@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "533_mustdeletaftercheck/lambda.js",
-        "code": "let SL_AWS = require('slappforge-sdk-aws');\nlet connectionManager = require('./ConnectionManager');\nconst rds = new SL_AWS.RDS(connectionManager);\n\nexports.handler = function (event, context, callback) {\n\n    // You must always end/destroy the DB connection after it's used\n    rds.beginTransaction({\n        instanceIdentifier: 'hirudinee'\n    }, function (error, connection) {\n        if (error) {\n            throw error;\n        }\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let SL_AWS = require('slappforge-sdk-aws');\nlet connectionManager = require('./ConnectionManager');\nconst rds = new SL_AWS.RDS(connectionManager);\n\nexports.handler = function (event, context, callback) {\n\n    // You must always end/destroy the DB connection after it's used\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -128,7 +128,7 @@
     "projectRegion": "eu-central-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1561544570030
+    "lastSave": 1561544989760
   },
   "VCS_STATE": {
     "provider": "GitHub",
