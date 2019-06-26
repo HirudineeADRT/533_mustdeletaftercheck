@@ -1,0 +1,140 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "d900b445-227d-46ba-86aa-cccd2f677131": {
+        "id": "d900b445-227d-46ba-86aa-cccd2f677131",
+        "parent": null,
+        "name": "533_mustdeletaftercheck",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "26685f70-67ae-4158-bf47-3da1723937dd",
+          "48b15ea4-1569-4e0f-84ab-8653059f38d9"
+        ],
+        "isRemovable": false,
+        "filePath": "533_mustdeletaftercheck"
+      },
+      "26685f70-67ae-4158-bf47-3da1723937dd": {
+        "id": "26685f70-67ae-4158-bf47-3da1723937dd",
+        "parent": "d900b445-227d-46ba-86aa-cccd2f677131",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "533_mustdeletaftercheck/lambda.js",
+        "code": "let SL_AWS = require('slappforge-sdk-aws');\nlet connectionManager = require('./ConnectionManager');\nconst rds = new SL_AWS.RDS(connectionManager);\n\nexports.handler = function (event, context, callback) {\n\n    // You must always end/destroy the DB connection after it's used\n    rds.beginTransaction({\n        instanceIdentifier: 'hirudinee'\n    }, function (error, connection) {\n        if (error) {\n            throw error;\n        }\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
+      },
+      "48b15ea4-1569-4e0f-84ab-8653059f38d9": {
+        "id": "48b15ea4-1569-4e0f-84ab-8653059f38d9",
+        "parent": "d900b445-227d-46ba-86aa-cccd2f677131",
+        "name": "ConnectionManager.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "533_mustdeletaftercheck/ConnectionManager.js",
+        "code": "module.exports = function() {\n    this.dbConnections = [];\n\n    this.dbConnections[\"hirudinee\"] = {\n        host: process.env.EndPoint_rdsHirudinee,\n        port: process.env.Port_rdsHirudinee,\n        user: process.env.User_rdsHirudinee,\n        password: process.env.Password_rdsHirudinee,\n        database: \"TestDB\"\n    };\n};"
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "d900b445-227d-46ba-86aa-cccd2f677131",
+    "openFiles": [
+      "26685f70-67ae-4158-bf47-3da1723937dd"
+    ],
+    "currentFileId": "26685f70-67ae-4158-bf47-3da1723937dd",
+    "resources": {
+      "rds-hirudinee": {
+        "name": "rds-hirudinee",
+        "type": "RDS",
+        "config": {
+          "editMode": false,
+          "operation": 1,
+          "rdsInstance": {
+            "rdsEngineType": "mysql",
+            "rdsEdition": "",
+            "rdsInstanceSpec": {
+              "dbInstanceClass": "db.t2.micro",
+              "dbLicenseModel": "general-public-license",
+              "dbEngineVersion": "5.7.19"
+            },
+            "rdsSetting": {
+              "instanceIdentifier": "hirudinee",
+              "masterUsername": "hiruadmin",
+              "masterPassword": "12345678"
+            },
+            "rdsDBOptions": {
+              "dbName": "TestDB",
+              "dbPort": "3306"
+            },
+            "rdsInstanceArn": "",
+            "Host": "",
+            "doesExist": false,
+            "initializationQuery": "",
+            "alreadyDeployed": false
+          },
+          "rdsInstanceResources": [],
+          "projectRegion": "eu-central-1",
+          "mode": 0,
+          "additionalFiles": [],
+          "params": {
+            "query": "",
+            "inserts": ""
+          },
+          "isGlobalEditMode": false,
+          "enableInject": true,
+          "isNewFromGlobal": false
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "slappforge-sdk-aws": {
+          "name": "slappforge-sdk-aws",
+          "language": "javascript",
+          "version": "0.0.5",
+          "dev": false,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "533_mustdeletaftercheck",
+    "projectDescription": "this project is created to verify the issue 533",
+    "projectVersion": "14.2.100",
+    "projectRegion": "eu-central-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1561544570030
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "533_mustdeletaftercheck",
+      "url": "https://github.com/HirudineeADRT/533_mustdeletaftercheck"
+    }
+  }
+}

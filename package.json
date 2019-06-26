@@ -1,0 +1,8 @@
+{
+  "name": "533_mustdeletaftercheck",
+  "version": "14.2.100",
+  "dependencies": {
+    "slappforge-sdk-aws": "0.0.5"
+  },
+  "devDependencies": {}
+}
